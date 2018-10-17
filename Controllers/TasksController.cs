@@ -2,13 +2,17 @@
 using System.Linq;
 using System.Web.Http;
 using Kanban.Context;
+using Kanban.Domain;
+using System.Web.Http.Cors;
 
 namespace Kanban.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class TasksController : ApiController
     {
         //Creating Instance of DatabaseContext class  
         private DatabaseContext db = new DatabaseContext();
+        private TaskDomain domain = new TaskDomain();
 
         //Creating a method to return Json data   
         [HttpGet]
@@ -16,22 +20,7 @@ namespace Kanban.Controllers
         {
             try
             {
-                //Prepare data to be returned using Linq as follows  
-                var result = from task in db.Tasks
-                             select new
-                             {
-                                 task.taskId,
-                                 task.description,
-                                 task.hours,
-                                 task.tracking,
-                                 User = from user in db.Users
-                                        where user.userId == task.userId
-                                        select new
-                                        {
-                                            user.userId,
-                                            user.name
-                                        }
-                             };
+                var result = domain.GetAllTasks();
                 return Ok(result);
             }
             catch (Exception)
@@ -39,6 +28,13 @@ namespace Kanban.Controllers
                 //If any exception occurs Internal Server Error i.e. Status Code 500 will be returned  
                 return InternalServerError();
             }
+        }
+
+        [HttpPost]
+        public IHttpActionResult Post()
+        {
+            var result = domain.TestPost();
+            return Ok(result);
         }
     }
 }

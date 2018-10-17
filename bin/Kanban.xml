@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Kanban</name>
+    </assembly>
+    <members>
+        <member name="T:Kanban.Controllers.ProjectsController">
+            <summary>
+            Acces projects of the database
+            </summary>
+        </member>
+        <member name="M:Kanban.Controllers.ProjectsController.Get">
+            <summary>
+            Get all projects of the database
+            </summary>
+            <remarks>
+            Returns all projects in the database
+            </remarks>
+            <model>
+            Project
+            </model>
+            <returns></returns>
+        </member>
+        <member name="T:Kanban.Controllers.SprintsController">
+            <summary>
+            Access sprints of the database
+            </summary>
+        </member>
+        <member name="M:Kanban.Controllers.SprintsController.Get">
+            <summary>
+            Get all sprints of the database
+            </summary>
+            <returns>
+            All sprints on the database
+            </returns>
+        </member>
+    </members>
+</doc>

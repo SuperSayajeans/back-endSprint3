@@ -2,13 +2,17 @@
 using System.Linq;
 using System.Web.Http;
 using Kanban.Context;
+using Kanban.Domain;
+using System.Web.Http.Cors;
 
 namespace Kanban.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class UsersController : ApiController
     {
         //Creating Instance of DatabaseContext class  
         private DatabaseContext db = new DatabaseContext();
+        private UserDomain domain = new UserDomain();
 
         //Creating a method to return Json data   
         [HttpGet]
@@ -17,12 +21,7 @@ namespace Kanban.Controllers
             try
             {
                 //Prepare data to be returned using Linq as follows  
-                var result = from user in db.Users
-                             select new
-                             {
-                                 user.userId,
-                                 user.name
-                             };
+                var result = domain.GetAllUsers();
                 return Ok(result);
             }
             catch (Exception)
