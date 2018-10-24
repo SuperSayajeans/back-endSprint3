@@ -27,5 +27,33 @@ namespace Kanban.Domain
         {
             return unitOfWork.Sprints.GetAll();
         }
+
+        public Sprint GetSprintById(int id)
+        {
+            return unitOfWork.Sprints.Get(id);
+        }
+
+        public string AddSprint(Sprint sprint)
+        {
+            unitOfWork.Sprints.Add(sprint);
+            unitOfWork.Complete();
+            return "Success";
+        }
+
+        public string UpdateSprintById(int id, int hours)
+        {
+            Sprint sprint = unitOfWork.Sprints.Get(id);
+            sprint.TotalHours = hours;
+            unitOfWork.Complete();
+            return "Success";
+        }
+
+        public string DeleteSprintById(int id)
+        {
+            Sprint sprint = unitOfWork.Sprints.Get(id);
+            unitOfWork.Sprints.Remove(sprint);
+            unitOfWork.Complete();
+            return "Success";
+        }
     }
 }

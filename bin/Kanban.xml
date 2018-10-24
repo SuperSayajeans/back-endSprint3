@@ -4,6 +4,23 @@
         <name>Kanban</name>
     </assembly>
     <members>
+        <member name="T:Kanban.Controllers.SprintManagerController">
+            <summary>
+            Acces tasks of the database
+            </summary>
+        </member>
+        <member name="M:Kanban.Controllers.SprintManagerController.Get(System.Int32)">
+            <summary>
+            Get all tasks within project of the database by id
+            </summary>
+            <remarks>
+            Returns all tasks matching the id of the project given as argument
+            </remarks>
+            <model>
+            Task
+            </model>
+            <returns></returns>
+        </member>
         <member name="T:Kanban.Controllers.ProjectsController">
             <summary>
             Acces projects of the database
@@ -15,6 +32,53 @@
             </summary>
             <remarks>
             Returns all projects in the database
+            </remarks>
+            <model>
+            Project
+            </model>
+            <returns></returns>
+        </member>
+        <member name="M:Kanban.Controllers.ProjectsController.Get(System.Int32)">
+            <summary>
+            Get projects of the database by id
+            </summary>
+            <remarks>
+            Returns a project matching the id given as argument
+            </remarks>
+            <model>
+            Project
+            </model>
+            <returns></returns>
+        </member>
+        <member name="M:Kanban.Controllers.ProjectsController.Post(Kanban.DatabaseModels.Project)">
+            <summary>
+            Add project of the database
+            </summary>
+            <remarks>
+            </remarks>
+            <model>
+            Task
+            </model>
+            <returns></returns>
+        </member>
+        <member name="M:Kanban.Controllers.ProjectsController.Put(System.Int32,System.String)">
+            <summary>
+            Update the description of a project of the database
+            </summary>
+            <remarks>
+            Use the id of the project to locate the desired task
+            </remarks>
+            <model>
+            Task
+            </model>
+            <returns></returns>
+        </member>
+        <member name="M:Kanban.Controllers.ProjectsController.Delete(System.Int32)">
+            <summary>
+            Deletes project of the database by id
+            </summary>
+            <remarks>
+            Deletes a project matching the id given as argument
             </remarks>
             <model>
             Project
@@ -33,6 +97,181 @@
             <returns>
             All sprints on the database
             </returns>
+        </member>
+        <member name="M:Kanban.Controllers.SprintsController.Get(System.Int32)">
+            <summary>
+            Get sprints of the database by id
+            </summary>
+            <remarks>
+            Returns a sprint matching the id given as argument
+            </remarks>
+            <model>
+            Sprint
+            </model>
+            <returns></returns>
+        </member>
+        <member name="M:Kanban.Controllers.SprintsController.Post(Kanban.DatabaseModels.Sprint)">
+            <summary>
+            Add sprint of the database
+            </summary>
+            <remarks>
+            </remarks>
+            <model>
+            Sprint
+            </model>
+            <returns></returns>
+        </member>
+        <member name="M:Kanban.Controllers.SprintsController.Put(System.Int32,System.Int32)">
+            <summary>
+            Update the description of a sprint of the database
+            </summary>
+            <remarks>
+            Use the id of the sprint to locate the desired sprint
+            </remarks>
+            <model>
+            Sprint
+            </model>
+            <returns></returns>
+        </member>
+        <member name="M:Kanban.Controllers.SprintsController.Delete(System.Int32)">
+            <summary>
+            Deletes task of the database by id
+            </summary>
+            <remarks>
+            Deletes a task matching the id given as argument
+            </remarks>
+            <model>
+            Task
+            </model>
+            <returns></returns>
+        </member>
+        <member name="T:Kanban.Controllers.TasksController">
+            <summary>
+            Acces tasks of the database
+            </summary>
+        </member>
+        <member name="M:Kanban.Controllers.TasksController.Get">
+            <summary>
+            Get all tasks of the database
+            </summary>
+            <remarks>
+            Returns all tasks in the database
+            </remarks>
+            <model>
+            Task
+            </model>
+            <returns></returns>
+        </member>
+        <member name="M:Kanban.Controllers.TasksController.Get(System.Int32)">
+            <summary>
+            Get task of the database by id
+            </summary>
+            <remarks>
+            Returns a task matching the id given as argument
+            </remarks>
+            <model>
+            Task
+            </model>
+            <returns></returns>
+        </member>
+        <member name="M:Kanban.Controllers.TasksController.Post(Kanban.DatabaseModels.Task)">
+            <summary>
+            Add task of the database
+            </summary>
+            <remarks>
+            </remarks>
+            <model>
+            Task
+            </model>
+            <returns></returns>
+        </member>
+        <member name="M:Kanban.Controllers.TasksController.Put(System.Int32,System.Int32)">
+            <summary>
+            Update the description of a task of the database
+            </summary>
+            <remarks>
+            Use the id of the task to locate the desired task
+            </remarks>
+            <model>
+            Task
+            </model>
+            <returns></returns>
+        </member>
+        <member name="M:Kanban.Controllers.TasksController.Delete(System.Int32)">
+            <summary>
+            Deletes task of the database by id
+            </summary>
+            <remarks>
+            Deletes a task matching the id given as argument
+            </remarks>
+            <model>
+            Task
+            </model>
+            <returns></returns>
+        </member>
+        <member name="T:Kanban.Controllers.UsersController">
+            <summary>
+            Acces users of the database
+            </summary>
+        </member>
+        <member name="M:Kanban.Controllers.UsersController.Get(System.Int32,System.Int32)">
+            <summary>
+            Get all users of the database
+            </summary>
+            <remarks>
+            Returns all users in the database
+            </remarks>
+            <model>
+            User
+            </model>
+            <returns></returns>
+        </member>
+        <member name="M:Kanban.Controllers.UsersController.Get(System.Int32)">
+            <summary>
+            Get user of the database by id
+            </summary>
+            <remarks>
+            Returns a user matching the id given as argument
+            </remarks>
+            <model>
+            User
+            </model>
+            <returns></returns>
+        </member>
+        <member name="M:Kanban.Controllers.UsersController.Post(Kanban.DatabaseModels.User)">
+            <summary>
+            Add user of the database
+            </summary>
+            <remarks>
+            </remarks>
+            <model>
+            User
+            </model>
+            <returns></returns>
+        </member>
+        <member name="M:Kanban.Controllers.UsersController.Put(System.Int32,System.String)">
+            <summary>
+            Update the email of a task of the database
+            </summary>
+            <remarks>
+            Use the id of the task to locate the desired task
+            </remarks>
+            <model>
+            Task
+            </model>
+            <returns></returns>
+        </member>
+        <member name="M:Kanban.Controllers.UsersController.Delete(System.Int32)">
+            <summary>
+            Deletes user of the database by id
+            </summary>
+            <remarks>
+            Deletes a user matching the id given as argument
+            </remarks>
+            <model>
+            User
+            </model>
+            <returns></returns>
         </member>
     </members>
 </doc>
