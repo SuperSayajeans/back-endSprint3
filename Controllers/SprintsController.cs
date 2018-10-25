@@ -6,6 +6,9 @@ using Kanban.Domain;
 using Kanban.DatabaseModels;
 using System.Web.Http.Cors;
 using System.Web.Http.Description;
+using Ninject;
+using System.Reflection;
+using Kanban.Domain.Interfaces;
 
 namespace Kanban.Controllers
 {
@@ -16,8 +19,16 @@ namespace Kanban.Controllers
     public class SprintsController : ApiController
     {
         //Creating Instance of DatabaseContext class  
-        private DatabaseContext db = new DatabaseContext();
-        private SprintDomain domain = new SprintDomain();
+        StandardKernel kernel = new StandardKernel();
+        private IDatabaseContext db;
+        private ISprintDomain domain;
+
+        public SprintsController()
+        {
+            kernel.Load(Assembly.GetExecutingAssembly());
+            db = kernel.Get<IDatabaseContext>();
+            domain = kernel.Get<ISprintDomain>();
+        }
 
         //Creating a method to return Json data   
         /// <summary>

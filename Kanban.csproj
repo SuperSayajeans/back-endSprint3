@@ -150,7 +150,12 @@
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Container\Bindings.cs" />
+    <Compile Include="Context\IDatabaseContext.cs" />
     <Compile Include="Controllers\SprintManagerController.cs" />
+    <Compile Include="Domain\Interfaces\IProjectDomain.cs" />
+    <Compile Include="Domain\Interfaces\ISprintDomain.cs" />
+    <Compile Include="Domain\Interfaces\ITaskDomain.cs" />
+    <Compile Include="Domain\Interfaces\IUserDomain.cs" />
     <Compile Include="Domain\ProjectDomain.cs" />
     <Compile Include="Domain\SprintDomain.cs" />
     <Compile Include="Domain\TaskDomain.cs" />

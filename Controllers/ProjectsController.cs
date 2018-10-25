@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Web.Http;
 using Kanban.Context;
 using Kanban.Domain;
@@ -7,6 +6,9 @@ using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using Kanban.DatabaseModels;
 using Kanban.RESTModels;
+using Ninject;
+using System.Reflection;
+using Kanban.Domain.Interfaces;
 
 namespace Kanban.Controllers
 {
@@ -17,8 +19,16 @@ namespace Kanban.Controllers
     public class ProjectsController : ApiController
     {
         //Creating Instance of DatabaseContext class  
-        private DatabaseContext db = new DatabaseContext();
-        private ProjectDomain domain = new ProjectDomain();
+        StandardKernel kernel = new StandardKernel();
+        private IDatabaseContext db;
+        private IProjectDomain domain;
+
+        public ProjectsController()
+        {
+            kernel.Load(Assembly.GetExecutingAssembly());
+            db = kernel.Get<IDatabaseContext>();
+            domain = kernel.Get<IProjectDomain>();
+        }
 
         //Creating a method to return Json data   
         /// <summary>

@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Ninject;
-using Ninject.Modules;
+﻿using Ninject.Modules;
 using Kanban.Infrastructure;
 using Kanban.Persistence;
 using Kanban.Infrastructure.Repositories;
 using Kanban.Persistence.Repositories;
+using Kanban.Context;
+using Kanban.Domain.Interfaces;
+using Kanban.Domain;
 
 namespace Kanban.Container
 {
@@ -20,6 +18,10 @@ namespace Kanban.Container
             Bind<ISprintRepository>().To<SprintRepository>();
             Bind<ITaskRepository>().To<TaskRepository>();
             Bind<IUserRepository>().To<UserRepository>();
+            Bind<IDatabaseContext>().To<DatabaseContext>();
+            Bind<IProjectDomain>().To<ProjectDomain>();
+            Bind<ISprintDomain>().To<SprintDomain>();
+            Bind<ITaskDomain>().To<TaskDomain>();
         }
     }
 }

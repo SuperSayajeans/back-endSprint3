@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using Kanban.DatabaseModels;
-using Kanban.Infrastructure.Repositories;
-using Kanban.Persistence;
 using Kanban.Infrastructure;
-using Kanban.Context;
 using Ninject;
 using System.Reflection;
-using PagedList.Mvc;
 using PagedList;
+using Kanban.Domain.Interfaces;
 
 namespace Kanban.Domain
 {
-    public class UserDomain
+    public class UserDomain: IUserDomain
     {
         StandardKernel kernel = new StandardKernel();
         IUnitOfWork unitOfWork;

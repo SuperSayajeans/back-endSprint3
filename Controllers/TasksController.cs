@@ -1,11 +1,13 @@
 ﻿using System;
-using System.Linq;
 using System.Web.Http;
 using Kanban.Context;
 using Kanban.Domain;
 using Kanban.DatabaseModels;
 using System.Web.Http.Description;
 using System.Web.Http.Cors;
+using Ninject;
+using System.Reflection;
+using Kanban.Domain.Interfaces;
 
 namespace Kanban.Controllers
 {
@@ -16,8 +18,16 @@ namespace Kanban.Controllers
     public class TasksController : ApiController
     {
         //Creating Instance of DatabaseContext class  
-        private DatabaseContext db = new DatabaseContext();
-        private TaskDomain domain = new TaskDomain();
+        StandardKernel kernel = new StandardKernel();
+        private IDatabaseContext db;
+        private ITaskDomain domain;
+
+        public TasksController()
+        {
+            kernel.Load(Assembly.GetExecutingAssembly());
+            db = kernel.Get<IDatabaseContext>();
+            domain = kernel.Get<ITaskDomain>();
+        }
 
         //Creating a method to return Json data   
         /// <summary>
@@ -32,11 +42,11 @@ namespace Kanban.Controllers
         /// <returns></returns>
         [HttpGet]
         [ResponseType(typeof(Task))]
-        public IHttpActionResult Get()
+        public IHttpActionResult Get(int page, int size)
         {
             try
             {
-                var result = domain.GetAllTasks();
+                var result = domain.GetAllTasks(page, size);
                 return Ok(result);
             }
             catch (Exception)

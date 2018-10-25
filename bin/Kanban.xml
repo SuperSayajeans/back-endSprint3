@@ -150,7 +150,7 @@
             Acces tasks of the database
             </summary>
         </member>
-        <member name="M:Kanban.Controllers.TasksController.Get">
+        <member name="M:Kanban.Controllers.TasksController.Get(System.Int32,System.Int32)">
             <summary>
             Get all tasks of the database
             </summary>

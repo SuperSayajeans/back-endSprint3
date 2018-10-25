@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using Kanban.DatabaseModels;
-using Kanban.Persistence;
 using Kanban.Infrastructure;
-using Kanban.Context;
 using Ninject;
 using System.Reflection;
 using System.Linq.Expressions;
+using PagedList;
+using Kanban.Domain.Interfaces;
 
 namespace Kanban.Domain
 {
-    public class TaskDomain
+    public class TaskDomain: ITaskDomain
     {
         StandardKernel kernel = new StandardKernel();
         public IUnitOfWork unitOfWork;
@@ -21,9 +21,9 @@ namespace Kanban.Domain
             unitOfWork = kernel.Get<IUnitOfWork>();
         }
 
-        public IEnumerable<Task> GetAllTasks()
+        public IEnumerable<Task> GetAllTasks(int page, int size)
         {
-            return unitOfWork.Tasks.GetAll();
+            return unitOfWork.Tasks.GetAll().ToPagedList(page, size);
         }
 
         public virtual Task GetTaskById(int id)
